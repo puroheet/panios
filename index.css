@@ -1,0 +1,70 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  This file contains custom component classes that the LLM is instructed to use.
+  By defining them here, we ensure a consistent look and feel for all
+  dynamically generated content.
+*/
+@layer components {
+  /* ==========================================================================
+     Typography & Text
+     ========================================================================== */
+  .llm-title {
+    @apply font-bold text-xl text-gray-900 mb-3 mt-1 mx-2;
+  }
+
+  .llm-text {
+    @apply m-2 text-gray-800 leading-relaxed;
+  }
+
+  .llm-label {
+    @apply mr-1 text-sm text-gray-600;
+  }
+
+  /* ==========================================================================
+     Layout Containers
+     ========================================================================== */
+  .llm-container {
+    @apply w-full flex flex-col items-start mb-4 gap-2 p-2;
+  }
+
+  .llm-row {
+    @apply w-full flex items-center mb-2 gap-2;
+  }
+
+  /* ==========================================================================
+     Forms & Interactive Elements
+     ========================================================================== */
+  .llm-button {
+    /* Note: `border-none` is default for buttons and `text-base` is often the body default, so they are omitted for brevity. */
+    @apply bg-blue-600 text-white rounded-md py-2 px-4 m-2 cursor-pointer font-medium text-center transition-colors hover:bg-blue-700 active:bg-blue-800 active:transform active:translate-y-px;
+  }
+
+  .llm-input,
+  .llm-textarea {
+    /* Note: `font-sans` is usually the default, so it's omitted for brevity. */
+    @apply m-2 p-2 w-full border border-gray-300 rounded-md bg-white text-gray-800 text-sm transition-all focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300;
+  }
+
+  .llm-textarea {
+    @apply min-h-[120px];
+  }
+
+  /* ==========================================================================
+     LLM-Generated Icons (to mimic desktop icons)
+     ========================================================================== */
+  .icon {
+    @apply w-24 h-28 flex flex-col items-center justify-start text-center m-2 p-2 cursor-pointer select-none rounded-lg transition-colors hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+
+  .icon-image {
+    @apply text-5xl mb-2 drop-shadow-sm;
+  }
+
+  .icon-label {
+    @apply text-sm text-gray-800 font-medium break-words max-w-full leading-tight;
+  }
+}
