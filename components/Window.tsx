@@ -43,7 +43,9 @@ export const Window: React.FC<WindowProps> = ({
   isParametersPanelOpen,
 }) => {
   const [isFileMenuOpen, setIsFileMenuOpen] = useState(false);
+  const [isEditMenuOpen, setIsEditMenuOpen] = useState(false);
   const fileMenuRef = useRef<HTMLDivElement>(null);
+  const editMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,6 +54,12 @@ export const Window: React.FC<WindowProps> = ({
         !fileMenuRef.current.contains(event.target as Node)
       ) {
         setIsFileMenuOpen(false);
+      }
+      if (
+        editMenuRef.current &&
+        !editMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsEditMenuOpen(false);
       }
     };
 
@@ -99,6 +107,18 @@ export const Window: React.FC<WindowProps> = ({
                   Exit
                 </span>
               )}
+            </div>
+          )}
+        </div>
+        <div className="relative" ref={editMenuRef}>
+          <MenuItem onClick={() => setIsEditMenuOpen((prev) => !prev)}>
+            <u>E</u>dit
+          </MenuItem>
+          {isEditMenuOpen && (
+            <div className="absolute left-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200">
+              <span className="block px-4 py-2 text-sm text-gray-400 cursor-not-allowed">
+                (empty)
+              </span>
             </div>
           )}
         </div>

@@ -24,16 +24,18 @@ export async function* streamAppContent(
   const model = 'gemini-2.5-flash-lite'; // Updated model
 
   if (!process.env.API_KEY) {
-    yield `<div class="p-4 text-red-700 bg-red-100 rounded-lg">
+    yield `<div class="p-4 text-red-700 bg-red-100 rounded-lg flex flex-col items-start">
       <p class="font-bold text-lg">Configuration Error</p>
       <p class="mt-2">The API_KEY is not configured. Please set the API_KEY environment variable.</p>
+      <button class="llm-button mt-4 bg-red-600 hover:bg-red-700 active:bg-red-800" data-interaction-id="dismiss_error" data-interaction-type="dismiss_error">Dismiss</button>
     </div>`;
     return;
   }
 
   if (interactionHistory.length === 0) {
-    yield `<div class="p-4 text-orange-700 bg-orange-100 rounded-lg">
+    yield `<div class="p-4 text-orange-700 bg-orange-100 rounded-lg flex flex-col items-start">
       <p class="font-bold text-lg">No interaction data provided.</p>
+      <button class="llm-button mt-4" data-interaction-id="dismiss_error" data-interaction-type="dismiss_error">Dismiss</button>
     </div>`;
     return;
   }
@@ -129,10 +131,11 @@ Generate the HTML content for the window's content area only:`;
       errorMessage += ` Details: ${error}`;
     }
 
-    yield `<div class="p-4 text-red-700 bg-red-100 rounded-lg">
+    yield `<div class="p-4 text-red-700 bg-red-100 rounded-lg flex flex-col items-start">
       <p class="font-bold text-lg">Error Generating Content</p>
       <p class="mt-2">${errorMessage}</p>
       <p class="mt-1">This may be due to an API key issue, network problem, or misconfiguration. Please check the developer console for more details.</p>
+      <button class="llm-button mt-4 bg-red-600 hover:bg-red-700 active:bg-red-800" data-interaction-id="dismiss_error" data-interaction-type="dismiss_error">Dismiss</button>
     </div>`;
   }
 }

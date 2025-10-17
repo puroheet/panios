@@ -111,6 +111,11 @@ const App: React.FC = () => {
         return;
       }
 
+      if (interactionData.id === 'dismiss_error') {
+        handleCloseAppView();
+        return;
+      }
+
       const newHistory = [
         interactionData,
         ...interactionHistory.slice(0, currentMaxHistoryLength - 1),
